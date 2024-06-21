@@ -1,5 +1,9 @@
-import Image from "next/image";
+"use client"
+
 import HomepageTemplate from "@/design-systems/Organisms/Templates/HomepageTemplate.";
+
+
+
 
 export default function Home() {
   return (

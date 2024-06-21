@@ -12,7 +12,7 @@ const HomepageTemplate = ()=>{
                 >
                 <div className="banner_video_wrap">
             <video autoPlay className="banner_video hidden md:block" id="myVid1241eo" loop muted>
-              <source src={'videos/animation1.mp4'} type="video/mp4" />
+              <source src={'videos/animation4.mp4'} type="video/mp4" />
             </video>
 
             <div className="video_gradient from-18%  to-76%  bg-gradient-to-b  from-gray-100 via-[#c8d18a]  to-[#c8d18a] dark:via-neutral-100 dark:to-neutral-100"></div>
