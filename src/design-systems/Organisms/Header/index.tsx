@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react'
 import { createWeb3Modal, useWeb3Modal, useWeb3ModalState } from '@web3modal/wagmi/react'
 import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { config } from '@/context/wagmiContext/config'
 
@@ -23,6 +24,7 @@ const Header:React.FC = ()=>{
   const projectId = "8e5776c8f369b3a8490d1677bdc34773"
   const { setTheme, theme } = useTheme()
   const { isConnecting, address, chainId } = useAccount()
+  const router = useRouter()
 
   const mobileSpecificWalletId = 'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96'
   const otherWalletIds = [
@@ -79,7 +81,7 @@ className = "shadow-xl sticky top-0 z-[999] from-18%  to-76%  bg-gradient-to-b  
     <div className="container">
       <div className="flex py-5 gap-4 items-center">
 
-      <Typography className="text-xl font-bold">OpenOcean</Typography>
+      <Typography className="text-xl font-bold cursor-pointer" onClick={()=>router.push("/")}>OpenOcean</Typography>
     <div className="flex w-[30%] flex-row items-center p-3 justify-center gap-2 border-black dark:border-white border rounded-smd">
                 <SearchIcon className="!h-[16px] !w-[16px] smd:!h-[24px] smd:!w-[24px]" />
                 <Input

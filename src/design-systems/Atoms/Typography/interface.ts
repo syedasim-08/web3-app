@@ -23,4 +23,5 @@ export interface TypographyProps extends PropsWithChildren {
   size?: TypographyRobotCondensedSize | TypographyRobotSize
   className?: string
   tabIndex?: number
+  onClick?: any;
 }
