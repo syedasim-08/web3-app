@@ -9,3 +9,6 @@ const Art: React.FC = ()=>{
         </Typography>
     )
 }
+
+
+export default Art
