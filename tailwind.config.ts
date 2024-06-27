@@ -196,6 +196,7 @@ module.exports = {
         naviBlue: '#041624',
         disable: '#DDDDDD',
         modalOpverlay: 'rgba(0, 0, 0, 0.70)',
+        lightGray: 'rgba(18, 18, 18, 0.08)'
       },
     
       backgroundImage: () => ({

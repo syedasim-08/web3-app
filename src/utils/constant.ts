@@ -3,5 +3,8 @@ export const parseBoolean = (value?: string) => {
   }
 export const IS_PRODUCTION = parseBoolean(process.env.NEXT_PUBLIC_IS_PRODUCTION)
 
-
+export enum SOLAV_NETWORKS {
+  ETHEREUM = '1',
+  POLYGON = '2',
+}
 
