@@ -1,3 +1,4 @@
+"use client"
 import CreateNFTTemplate from "@/design-systems/Organisms/Templates/CreateNFTTemplate"
 
 

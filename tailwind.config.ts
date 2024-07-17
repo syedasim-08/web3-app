@@ -207,6 +207,10 @@ module.exports = {
         'card-dark':
           'box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.06), 0px 4px 14px 0px rgba(255, 255, 255, 0.08) inset, 0px -4px 44px 0px rgba(255, 255, 255, 0.08) inset',
       },
+      boxShadow: {
+        'box-lg': '0px 4px 16px rgba(0, 0, 0, 0.08)',
+        'box-xl': '0px 6px 24px rgba(0, 0, 0, 0.12)'
+      },
       keyframes: {
         blink: {
           '0%, 100%': { opacity: 1 },
