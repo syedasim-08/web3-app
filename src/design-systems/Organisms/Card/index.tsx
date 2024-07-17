@@ -2,8 +2,9 @@
 import Typography from "@/design-systems/Atoms/Typography";
 import Image from "next/image";
 import CardImage from "@/assets/images/nftImage.webp";
+import { CardsProps } from "./interface";
 
-const Card: React.FC = () => {
+const Card: React.FC<CardsProps> = () => {
   return (
     <div className="bg-white dark:bg-[#262525] max-h-[277px] w-full shadow-lg rounded-[12px] hover:-translate-y-[6px] transition-all duration-500 ease-in-out ">
       <Image

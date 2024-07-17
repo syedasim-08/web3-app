@@ -10,7 +10,7 @@ const ArtPageTemplate = ()=>{
             {
                 Array.from({length: 100}).map((_,index)=>{
                     return (
-                        <Card />
+                        <Card key={index} />
                     )
                 })
 
