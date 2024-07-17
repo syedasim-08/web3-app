@@ -1,6 +1,6 @@
 'use client'
 import React, { useState,useEffect } from 'react'
-import { createWeb3Modal, useWeb3Modal, useWeb3ModalState } from '@web3modal/wagmi/react'
+import { createWeb3Modal, useWeb3Modal } from '@web3modal/wagmi/react'
 import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
 import Image from "next/image";
 import { useRouter } from 'next/navigation'
@@ -11,7 +11,7 @@ import { SearchIcon } from "@/design-systems/Atoms/Icons";
 import Input from "@/design-systems/Atoms/Input";
 import Typography from "@/design-systems/Atoms/Typography";
 import SunIcon from '@/assets/images/sunIcon.png'
-import { MoonIcon , EthereumIcon} from "@/design-systems/Atoms/Icons";
+import { MoonIcon } from "@/design-systems/Atoms/Icons";
 import Button from "@/design-systems/Atoms/Button";
 import { ThemeMode } from './interface'
 import { SwitchChainDropDown } from '@/design-systems/Atoms/SwitchChainDropdown';
@@ -50,8 +50,9 @@ const Header:React.FC = ()=>{
 
   const { open } = useWeb3Modal()
 
+  console.log("open",open)
+
   const handleWallet = ()=>{
-    
     open()
   }
 
@@ -79,7 +80,7 @@ className = "shadow-xl sticky top-0 z-[999] from-18%  to-76%  bg-gradient-to-b  
 
 >
     <div className="container">
-      <div className="flex py-5 gap-4 items-center">
+      <div className="flex py-5 gap-4 items-center justify-between">
 
       <Typography className="text-xl font-bold cursor-pointer" onClick={()=>router.push("/")}>OpenOcean</Typography>
     <div className="flex w-[30%] flex-row items-center p-3 justify-center gap-2 border-black dark:border-white border rounded-smd">
@@ -95,8 +96,8 @@ className = "shadow-xl sticky top-0 z-[999] from-18%  to-76%  bg-gradient-to-b  
 
               <div className="flex gap-9 pl-3 items-center">
 
-              <Typography className="text-lg pl-2 cursor-pointer">Art</Typography>
-              <Typography className="text-lg cursor-pointer">Gaming</Typography>
+              <Typography className="text-lg pl-2 cursor-pointer" onClick={()=>router.push('/art')}>Art</Typography>
+              <Typography className="text-lg cursor-pointer" onClick={()=>router.push('/create')}>Create</Typography>
               <Typography className="text-lg cursor-pointer">Membership</Typography>
 
 

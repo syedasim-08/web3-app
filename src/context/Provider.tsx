@@ -4,9 +4,7 @@ import { WagmiProvider, cookieToInitialState } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactNode } from 'react'
 import { ThemeProvider } from 'next-themes'
-
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
 import { config } from './wagmiContext/config'
 
 
@@ -26,7 +24,6 @@ export default function Providers({ children, cookie }: { children: ReactNode; c
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </WagmiProvider>
-    
     </ThemeProvider>
   )
 }

@@ -119,3 +119,67 @@ export const MoonIcon: React.FC<IconProps> = ({ width = '24', height = '24' }) =
       </svg>
     )
   }
+
+
+  export const CircleCheckIcon: React.FC<IconProps> = ({
+    className = 'stroke-neutral-100 dark:stroke-neutral-800',
+    fill = 'none',
+    width = '20',
+    height = '20',
+    stroke = '#595959',
+    ...props
+  }) => {
+    return (
+      <svg
+        height={height}
+        width={width}
+        {...props}
+        className={className}
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M16.125 9.75L10.6219 15L7.875 12.375" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <path
+          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+
+  export const WarningIcon: React.FC<IconProps> = ({
+    className = 'stroke-neutral-100 dark:stroke-neutral-800 fill-neutral-100 dark:fill-neutral-800',
+    fill = 'none',
+    width = '20',
+    height = '20',
+    stroke = '#595959',
+    ...props
+  }) => {
+    return (
+      <svg
+        height={height}
+        width={width}
+        {...props}
+        className={className}
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M12 9.75V13.5" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <path
+          d="M10.7063 3.74999L2.45634 18C2.32491 18.2276 2.2556 18.4858 2.25537 18.7487C2.25514 19.0115 2.32398 19.2698 2.45501 19.4977C2.58604 19.7256 2.77465 19.915 3.00194 20.0471C3.22923 20.1791 3.48723 20.2491 3.75009 20.25H20.2501C20.5129 20.2491 20.7709 20.1791 20.9982 20.0471C21.2255 19.915 21.4141 19.7256 21.5452 19.4977C21.6762 19.2698 21.745 19.0115 21.7448 18.7487C21.7446 18.4858 21.6753 18.2276 21.5438 18L13.2938 3.74999C13.1634 3.52206 12.975 3.33263 12.7479 3.20088C12.5207 3.06914 12.2627 2.99976 12.0001 2.99976C11.7375 2.99976 11.4795 3.06914 11.2523 3.20088C11.0251 3.33263 10.8368 3.52206 10.7063 3.74999V3.74999Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+        <path
+          d="M13.0625 16.875C13.0625 17.4618 12.5868 17.9375 12 17.9375C11.4132 17.9375 10.9375 17.4618 10.9375 16.875C10.9375 16.2882 11.4132 15.8125 12 15.8125C12.5868 15.8125 13.0625 16.2882 13.0625 16.875Z"
+          strokeWidth="0.125"
+        />
+      </svg>
+    )
+  }

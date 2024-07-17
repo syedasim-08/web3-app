@@ -196,6 +196,7 @@ module.exports = {
         naviBlue: '#041624',
         disable: '#DDDDDD',
         modalOpverlay: 'rgba(0, 0, 0, 0.70)',
+        lightGray: 'rgba(18, 18, 18, 0.08)'
       },
     
       backgroundImage: () => ({
@@ -205,6 +206,10 @@ module.exports = {
         'card': ' 0px 4px 48px 0px rgba(0, 0, 0, 0.48)',
         'card-dark':
           'box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.06), 0px 4px 14px 0px rgba(255, 255, 255, 0.08) inset, 0px -4px 44px 0px rgba(255, 255, 255, 0.08) inset',
+      },
+      boxShadow: {
+        'box-lg': '0px 4px 16px rgba(0, 0, 0, 0.08)',
+        'box-xl': '0px 6px 24px rgba(0, 0, 0, 0.12)'
       },
       keyframes: {
         blink: {
