@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/useToast";
 import { toast } from 'react-toastify'
 const CreateNFTTemplate: React.FC = () => {
   const [file, setFile] = useState<CustomFile | undefined>();
+  
   const { writeContract } = useWriteContract();
   const { isConnected, chainId, address } = useAccount();
   const { warningToast } = useToast()
@@ -137,7 +138,6 @@ const CreateNFTTemplate: React.FC = () => {
       console.log("values", values);
       if (!isConnected || !address) {
         return warningToast('please login')
-      // return toast.error("please login")
       }
 
       try {
@@ -152,14 +152,8 @@ const CreateNFTTemplate: React.FC = () => {
             ],
           });
   
-          console.log("response", response);
   
-          // const result = await useWaitForTransactionReceipt({
-          //   hash: response as any,
-          // });
-  
-          // console.log("result", result);
-        
+       
       } catch (error) {
         console.log(error);
       }

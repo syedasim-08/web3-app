@@ -2,6 +2,9 @@
 
 import Typography from '@/design-systems/Atoms/Typography'
 import React from 'react'
+import ArtsSkeleton from '../../ArtsSkeleton'
+
+
 
 const HomepageTemplate = ()=>{
     return (

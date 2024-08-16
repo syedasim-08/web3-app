@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import ArtPageTemplate from "@/design-systems/Organisms/Templates/ArtPageTemplate"
+import { ExampleArtsResponse } from "@/api-services/interfaces/arts";
+import ArtPageTemplate from "@/design-systems/Organisms/Templates/ArtPageTemplate";
+import { useArtsCollection } from "@/hooks/useArtsCollection";
+import { ArtsDataCollection } from "@/utils/data";
 
+const Art: React.FC = () => {
+  const { isLoadingNft, exampleNftData } = useArtsCollection();
 
+  return (
+    <>
+      <ArtPageTemplate
+        isLoadingNft={isLoadingNft}
+        exampleNftData={exampleNftData as ArtsDataCollection[]}
+      />
+    </>
+  );
+};
 
-const Art: React.FC = ()=>{
-    return (
-        // <Typography className="text-center text-xxl text-black">
-        //     COMING SOON
-        // </Typography>
-        <>
-        <ArtPageTemplate />
-        </>
-    )
-}
-
-
-export default Art
-
+export default Art;
