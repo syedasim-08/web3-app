@@ -4,11 +4,11 @@ import Image from "next/image";
 import CardImage from "@/assets/images/nftImage.webp";
 import { CardsProps } from "./interface";
 
-const Card: React.FC<CardsProps> = () => {
+const Card: React.FC<CardsProps> = ({name,price,minting,url}) => {
   return (
     <div className="bg-white dark:bg-[#262525] max-h-[277px] w-full shadow-lg rounded-[12px] hover:-translate-y-[6px] transition-all duration-500 ease-in-out ">
       <Image
-        src={CardImage}
+        src={url}
         loading="lazy"
         alt=""
         width="100"
@@ -18,17 +18,17 @@ const Card: React.FC<CardsProps> = () => {
       <div className="text-body text-black dark:text-white p-3 mt-4">
         <div>
           <Typography className="font-bold">
-            Veiled in Love
+           {name}
           </Typography>
           <div className="flex gap-5 mt-3">
             <div className="flex flex-col">
               <Typography className="font-normal text-gray">Minting</Typography>
-              <Typography className="font-bold">Now</Typography>
+              <Typography className="font-bold">{minting}</Typography>
             </div>
 
             <div className="flex flex-col">
               <Typography className="font-normal text-gray">Price</Typography>
-              <Typography className="font-bold">0.009 ETH</Typography>
+              <Typography className="font-bold">{price} ETH</Typography>
             </div>
           </div>
         </div>
