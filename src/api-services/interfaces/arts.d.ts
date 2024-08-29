@@ -1,6 +1,6 @@
 
 export interface ArtsNftData {
-    id: number;
+    _id: string;
     name: string;
     minting: string;
     price: number;

@@ -13,12 +13,12 @@ export const useArtsCollection = () => {
   })
 
   const exampleNftData = useMemo(() => {
-    console.log("data",data?.data)
+   
     return data
   }, [data])
 
   return {
     isLoadingNft,
-    exampleNftData:data?.data,
+    exampleNftData :exampleNftData || [],
   }
 }

@@ -1,5 +1,6 @@
 import { useTheme } from "next-themes";
 import { ButtonProps } from "./interface";
+import Typography from "../Typography";
 
 const Button: React.FC<ButtonProps> = ({
   className,
@@ -8,6 +9,7 @@ const Button: React.FC<ButtonProps> = ({
   type,
   disabled,
   buttonType,
+  loading,
 }) => {
   const { theme } = useTheme();
   return (
@@ -29,7 +31,21 @@ const Button: React.FC<ButtonProps> = ({
         type={type}
         onClick={onClick}
       >
+          {loading ? (
+        <Typography
+          className={` flex items-center justify-center text-center `}
+        
+        >
+          Loading...
+        </Typography>
+      ) : (
+        <Typography
+          className={`flex items-center justify-center text-center `}
+        
+        >
         {children}
+        </Typography>
+      )}
       </button>
     </div>
   );
