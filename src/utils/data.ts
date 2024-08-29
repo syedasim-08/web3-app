@@ -1,5 +1,3 @@
-
-
 export interface ArtsDataCollection {
   _id: string;
   name: string;
