@@ -3,6 +3,7 @@ export const API_ENDPOINTS = {
      
     },
     PRIVATE: {
+      POST_ART_NFT: 'arts',
  
     },
     PUBLIC: {

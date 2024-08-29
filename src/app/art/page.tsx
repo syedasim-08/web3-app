@@ -8,6 +8,9 @@ import { ArtsDataCollection } from "@/utils/data";
 const Art: React.FC = () => {
   const { isLoadingNft, exampleNftData } = useArtsCollection();
 
+
+  console.log("data",exampleNftData)
+
   return (
     <>
       <ArtPageTemplate

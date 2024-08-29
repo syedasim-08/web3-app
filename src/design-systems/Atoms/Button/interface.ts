@@ -7,4 +7,5 @@ export interface ButtonProps {
   type?: "button" | "reset" | "submit" | undefined;
   disabled?: boolean;
   buttonType?: "outline gradiant" | "normal" | "primary gradiant";
+  loading? : boolean
 }

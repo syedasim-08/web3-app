@@ -1,5 +1,5 @@
 export interface CardsProps {
-    key : number
+    key : number | string
     name: string
     price: number
     minting : string

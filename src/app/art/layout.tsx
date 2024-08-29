@@ -12,7 +12,8 @@ export interface ArtLayoutProps {
 
 
 const ArtLayout : React.FC<ArtLayoutProps> = ({children})=>{
-    return <Suspense fallback="loading..">{children}</Suspense>
+    return <Suspense fallback={<div className="flex items-center justify-center">Loading....
+    </div>}>{children}</Suspense>
 }
 
 export default ArtLayout

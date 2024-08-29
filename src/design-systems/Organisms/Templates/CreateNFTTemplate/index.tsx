@@ -9,29 +9,36 @@ import Typography from "@/design-systems/Atoms/Typography";
 import { FaUpload } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+// import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { writeContract, waitForTransactionReceipt } from "@wagmi/core";
+
 import { useAccount } from "wagmi";
 import { getMintContractAddress, ipfsHash } from "@/utils/contract";
 import ABIS from "@/app/abi";
 import { CustomFile, SingleFormValues } from "./interface";
 import { validationSchema } from "./utils";
 import { useToast } from "@/hooks/useToast";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
+import { useCreateArts } from "@/hooks/usePostArtsColection";
+import { useRouter } from "next/navigation";
+import { config } from "@/context/wagmiContext/config";
 const CreateNFTTemplate: React.FC = () => {
+  const router = useRouter();
   const [file, setFile] = useState<CustomFile | undefined>();
-  
-  const { writeContract } = useWriteContract();
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const { isSubmitArtsLoading, createArtsMutateAsync } = useCreateArts();
+  // const { writeContract } = useWriteContract();
   const { isConnected, chainId, address } = useAccount();
-  const { warningToast } = useToast()
+  const { warningToast } = useToast();
   const mintContractAddress = useMemo(
     () => getMintContractAddress(chainId),
     [chainId]
   );
 
-  const [name, setName] = useState<string>("");
-  const [supply, setSupply] = useState<string>("");
-  const [desc, setDesc] = useState<string>("");
-  const [url, setUrl] = useState<string>("");
+  // const [name, setName] = useState<string>("");
+  // const [supply, setSupply] = useState<string>("");
+  // const [desc, setDesc] = useState<string>("");
+  // const [url, setUrl] = useState<string>("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // const selectedFile = event.target.files?.[0];
@@ -63,11 +70,7 @@ const CreateNFTTemplate: React.FC = () => {
     const selectedFile = event.dataTransfer.files?.[0];
     console.log("image", selectedFile);
     if (selectedFile) {
-      // const reader = new FileReader();
-      // reader.onloadend = () => {
-      //   setPreview(reader.result as string);
-      // };
-      // reader.readAsDataURL(selectedFile);
+  
 
       const fileWithPreview = Object.assign(selectedFile, {
         preview: URL.createObjectURL(selectedFile),
@@ -120,7 +123,7 @@ const CreateNFTTemplate: React.FC = () => {
     name: "",
     description: "",
     externalLink: "",
-    supply: 1,
+    price: "",
     file_upload: "",
   };
 
@@ -137,26 +140,52 @@ const CreateNFTTemplate: React.FC = () => {
     onSubmit: async (values) => {
       console.log("values", values);
       if (!isConnected || !address) {
-        return warningToast('please login')
+        return warningToast("please login");
       }
+      setIsLoading(true);
 
       try {
-   
-          const response = await writeContract({
-            abi: ABIS.createNFT as any,
-            address: mintContractAddress as any,
-            functionName: "mint",
-            args: [
-              String(address),
-              `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
-            ],
-          });
-  
-  
-       
+        const response = await writeContract(config, {
+          abi: ABIS.createNFT as any,
+          address: mintContractAddress as any,
+          functionName: "mint",
+          args: [
+            String(address),
+            `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
+          ],
+        });
+
+        const txReceipt = await waitForTransactionReceipt(config, {
+          hash: response,
+        });
+
+        if (txReceipt) {
+          const data = {
+            name: values.name,
+            minting: "now",
+            price: Number(values.price),
+            imgUrl: "https://i.postimg.cc/Vvc7G2vV/very-large-flamingo.jpg",
+            description: values.description,
+            link: values.externalLink,
+          };
+
+          const res = await createArtsMutateAsync(data);
+          if (res) {
+            setIsLoading(false);
+            toast.success("Art created successfully");
+
+            setTimeout(()=>{
+              router.push("/art");
+            },2000)
+            
+          }
+
+        
+        }
       } catch (error) {
         console.log(error);
       }
+      setIsLoading(false);
     },
   });
 
@@ -181,13 +210,13 @@ const CreateNFTTemplate: React.FC = () => {
                 //  onChange={(e)=>setName((e.target as HTMLInputElement).value)}
                 {...getFieldProps("name")}
               />
-              <Typography className="font-bold my-4">Supply*</Typography>
+              <Typography className="font-bold my-4">Price*</Typography>
               <Input
                 inWrpClassName="bg-transparent border border-black p-3"
                 inputClassNames="!p-0"
-                type="number"
-                error={errors.supply && touched.supply ? errors.supply : ""}
-                {...getFieldProps("supply")}
+                type="string"
+                error={errors.price && touched.price ? errors.price : ""}
+                {...getFieldProps("price")}
               />
               <Typography className="font-bold my-4">Description*</Typography>
               <TextAreaInput
@@ -217,6 +246,7 @@ const CreateNFTTemplate: React.FC = () => {
 
               <Button
                 type="submit"
+                loading={loading}
                 className="border border-black dark:border-white py-1 px-3 rounded-sm mt-5 text-center"
               >
                 Create

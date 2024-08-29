@@ -1,0 +1,25 @@
+import mongoose, { Document, Schema } from 'mongoose';
+
+const ArtsSchema: Schema = new Schema({
+  name: { type: String, required: true },
+  minting: { type: String },
+  price: { type: String },
+  imgUrl: { type: String },
+  description: { type: String },
+  link: { type: String },
+
+}
+);
+
+interface IArts extends Document {
+    name: String,
+    minting: String,
+    price: String,
+    imgUrl: String
+}
+
+const ArtModel = mongoose.models.Art || mongoose.model<IArts>('Art', ArtsSchema);
+
+export default ArtModel;
+
+

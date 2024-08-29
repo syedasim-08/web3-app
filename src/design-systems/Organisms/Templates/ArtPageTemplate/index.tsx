@@ -3,13 +3,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Card from "@/design-systems/Organisms/Card";
 import { useAccount } from "wagmi";
-import { useArtsCollection } from "@/hooks/useArtsCollection";
 import { ArtsDataCollection } from "@/utils/data";
 import { ArtsTemplateProps } from "./interface";
-import { ExampleArtsResponse } from "@/api-services/interfaces/arts";
 import ArtsSkeleton from "../../ArtsSkeleton";
+import Typography from "@/design-systems/Atoms/Typography";
 
-export const PAGE_SIZE = 5;
+export const PAGE_SIZE = 10;
 
 interface ArtsSkeletonProps {
   noOfSkeleton?: number;
@@ -39,39 +38,11 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
 
   const { isConnected } = useAccount();
 
-  useMemo(() => {
-    setArtsData(exampleNftData);
-  }, [exampleNftData]);
+  // useMemo(() => {
+  //   setArtsData(exampleNftData);
+  // }, [exampleNftData]);
 
-  // async function fetchArtsData() {
-  //   try {
-  //       setLoading(true)
-  //     const response = await fetch("/api/arts", {
-  //       headers: {
-  //         Accept: "application/json",
-  //         method: "GET",
-  //       },
-  //     });
-  //     if (response) {
-  //       setLoading(false)
-  //       const data = await response.json();
-  //       console.log(data);
-  //     }
-  //   } catch (error) {
-  //       setLoading(false)
-  //     console.log(error);
-  //   }
-  // }
 
-  // useEffect(() => {
-
-  //   // if(isConnected){
-  //   //     fetchArtsData()
-  //   // }
-
-  //   console.log("data",exampleNftData)
-
-  // }, []);
 
   return (
     <main className="container h-screen bg-[#f7f7f7] dark:bg-black">
@@ -82,10 +53,12 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
         {isLoadingNft ? (
           <ArtsSkeltonList />
         ) : (
-          artsData?.map((item: ArtsDataCollection) => {
+          
+          exampleNftData && exampleNftData.length > 0 ? 
+          exampleNftData?.map((item: ArtsDataCollection) => {
             return (
               <Card
-                key={item.id}
+                key={item._id}
                 name={item.name}
                 price={item.price}
                 minting={item.minting}
@@ -93,7 +66,16 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
               />
             );
           })
-        )}
+          
+          :
+          <div className="flex min-h-[90vh] items-center justify-center gap-y-[22px] pb-5 pt-5">
+          <Typography>No data found</Typography>
+        </div>
+
+  
+
+
+ )}
       </div>
     </main>
   );
