@@ -35,10 +35,7 @@ const CreateNFTTemplate: React.FC = () => {
     [chainId]
   );
 
-  // const [name, setName] = useState<string>("");
-  // const [supply, setSupply] = useState<string>("");
-  // const [desc, setDesc] = useState<string>("");
-  // const [url, setUrl] = useState<string>("");
+
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // const selectedFile = event.target.files?.[0];
