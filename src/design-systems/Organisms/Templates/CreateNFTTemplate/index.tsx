@@ -93,31 +93,7 @@ const CreateNFTTemplate: React.FC = () => {
     setFieldValue("file_upload", null);
   };
 
-  // const createNFT = async () => {
-  //   try {
-  //     if (name && supply && desc && url) {
-  //       const response = await writeContract({
-  //         abi: ABIS.createNFT as any,
-  //         address: mintContractAddress as any,
-  //         functionName: "mint",
-  //         args: [
-  //           String(address),
-  //           `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
-  //         ],
-  //       });
 
-  //       console.log("response", response);
-
-  //       const result = await useWaitForTransactionReceipt({
-  //         hash: response as any,
-  //       });
-
-  //       console.log("result", result);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const initialValues: SingleFormValues = {
     name: "",
@@ -207,7 +183,6 @@ const CreateNFTTemplate: React.FC = () => {
                 inputClassNames="!p-0"
                 error={errors.name && touched.name ? errors.name : ""}
                 type="text"
-                //  onChange={(e)=>setName((e.target as HTMLInputElement).value)}
                 {...getFieldProps("name")}
               />
               <Typography className="font-bold my-4">Price*</Typography>
