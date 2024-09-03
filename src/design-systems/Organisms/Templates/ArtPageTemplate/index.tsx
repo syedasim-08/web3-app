@@ -34,27 +34,14 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
   isLoadingNft,
   exampleNftData,
 }) => {
-  const [artsData, setArtsData] = useState<ArtsDataCollection[]>([]);
-
   const { isConnected } = useAccount();
 
-  // useMemo(() => {
-  //   setArtsData(exampleNftData);
-  // }, [exampleNftData]);
-
-
-
   return (
-    <main className="container h-screen bg-[#f7f7f7] dark:bg-black">
+    <main className="container h-full bg-[#f7f7f7] dark:bg-black">
       <div className="grid grid-cols-5 pt-16 gap-y-6 gap-4">
-        {/* {Array.from({ length: 100 }).map((_, index) => {
-          return <Card key={index} data={exampleNftData} />;
-        })} */}
         {isLoadingNft ? (
           <ArtsSkeltonList />
-        ) : (
-          
-          exampleNftData && exampleNftData.length > 0 ? 
+        ) : exampleNftData && exampleNftData.length > 0 ? (
           exampleNftData?.map((item: ArtsDataCollection) => {
             return (
               <Card
@@ -62,20 +49,15 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
                 name={item.name}
                 price={item.price}
                 minting={item.minting}
-                url = {item.imgUrl}
+                url={item.imgUrl}
               />
             );
           })
-          
-          :
+        ) : (
           <div className="flex min-h-[90vh] items-center justify-center gap-y-[22px] pb-5 pt-5">
-          <Typography>No data found</Typography>
-        </div>
-
-  
-
-
- )}
+            <Typography>No data found</Typography>
+          </div>
+        )}
       </div>
     </main>
   );

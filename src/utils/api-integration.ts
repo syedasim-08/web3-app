@@ -2,6 +2,7 @@ export const API_ENDPOINTS = {
   AUTH: {},
   PRIVATE: {
     POST_ART_NFT: "arts",
+    POST_FILES: "file-upload",
   },
   PUBLIC: {
     GET_ART_NFT: "arts",

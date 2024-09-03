@@ -7,7 +7,11 @@ const ArtsSchema: Schema = new Schema({
   imgUrl: { type: String },
   description: { type: String },
   link: { type: String },
+  createdAt: { type: Date, default: Date.now }
 
+},
+{
+  timestamps: true 
 }
 );
 
@@ -16,6 +20,7 @@ interface IArts extends Document {
     minting: String,
     price: String,
     imgUrl: String
+    
 }
 
 const ArtModel = mongoose.models.Art || mongoose.model<IArts>('Art', ArtsSchema);
