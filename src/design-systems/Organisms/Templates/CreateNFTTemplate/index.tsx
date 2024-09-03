@@ -22,11 +22,14 @@ import { toast } from "react-toastify";
 import { useCreateArts } from "@/hooks/usePostArtsColection";
 import { useRouter } from "next/navigation";
 import { config } from "@/context/wagmiContext/config";
+import { useUploadFile } from "@/hooks/useUploadFile";
 const CreateNFTTemplate: React.FC = () => {
   const router = useRouter();
   const [file, setFile] = useState<CustomFile | undefined>();
+  const [fileUpload, setFileUpload] = useState<File | undefined>(undefined);
   const [loading, setIsLoading] = useState<boolean>(false);
   const { isSubmitArtsLoading, createArtsMutateAsync } = useCreateArts();
+  const { isSubmitFileLoading, uploadFileAsync } = useUploadFile();
   // const { writeContract } = useWriteContract();
   const { isConnected, chainId, address } = useAccount();
   const { warningToast } = useToast();
@@ -35,9 +38,9 @@ const CreateNFTTemplate: React.FC = () => {
     [chainId]
   );
 
-
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     // const selectedFile = event.target.files?.[0];
     const files = event.target.files;
 
@@ -50,11 +53,13 @@ const CreateNFTTemplate: React.FC = () => {
         //   setPreview(reader.result as string);
         // };
         // reader.readAsDataURL(selectedFile);
+        setFileUpload(selectedFile);
         const fileWithPreview = Object.assign(selectedFile, {
           preview: URL.createObjectURL(selectedFile),
         });
         console.log("file", fileWithPreview);
         setFieldValue("file_upload", selectedFile);
+
         setFile(fileWithPreview);
       }
     } else {
@@ -67,13 +72,13 @@ const CreateNFTTemplate: React.FC = () => {
     const selectedFile = event.dataTransfer.files?.[0];
     console.log("image", selectedFile);
     if (selectedFile) {
-  
-
+      setFileUpload(selectedFile);
       const fileWithPreview = Object.assign(selectedFile, {
         preview: URL.createObjectURL(selectedFile),
       });
 
       setFieldValue("file_upload", selectedFile);
+
       setFile(fileWithPreview);
       setFile(fileWithPreview);
     } else {
@@ -89,8 +94,6 @@ const CreateNFTTemplate: React.FC = () => {
     setFile(undefined);
     setFieldValue("file_upload", null);
   };
-
-
 
   const initialValues: SingleFormValues = {
     name: "",
@@ -132,12 +135,31 @@ const CreateNFTTemplate: React.FC = () => {
           hash: response,
         });
 
-        if (txReceipt) {
+        let uploadResponse;
+        if (fileUpload && txReceipt) {
+          try {
+            const formData = new FormData();
+
+            formData.append("file", fileUpload);
+            uploadResponse = await uploadFileAsync(formData);
+            if (uploadResponse) {
+              console.log(response);
+              toast.success("File uploaded successfully");
+            }
+          } catch (error) {
+            toast.error("Error in Uploading File");
+          }
+        }
+
+        console.log("url",uploadResponse?.url)
+
+        if (uploadResponse?.fileName?.url) {
           const data = {
             name: values.name,
             minting: "now",
             price: Number(values.price),
-            imgUrl: "https://i.postimg.cc/Vvc7G2vV/very-large-flamingo.jpg",
+            // imgUrl: "https://i.postimg.cc/Vvc7G2vV/very-large-flamingo.jpg",
+            imgUrl: uploadResponse?.fileName?.url,
             description: values.description,
             link: values.externalLink,
           };
@@ -147,13 +169,10 @@ const CreateNFTTemplate: React.FC = () => {
             setIsLoading(false);
             toast.success("Art created successfully");
 
-            setTimeout(()=>{
+            setTimeout(() => {
               router.push("/art");
-            },2000)
-            
+            }, 2000);
           }
-
-        
         }
       } catch (error) {
         console.log(error);

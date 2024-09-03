@@ -16,7 +16,7 @@ export interface postDataType  {
     name: string,
     minting: string,
     price: string | number,
-    imgUrl: string,
+    imgUrl: string ,
     description: string,
     link: string,
   };
