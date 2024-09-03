@@ -38,7 +38,7 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
 
   return (
     <main className="container h-full bg-[#f7f7f7] dark:bg-black">
-      <div className="grid grid-cols-5 pt-16 gap-y-6 gap-4">
+      <div className="grid grid-cols-5 pt-16 pb-5 gap-y-6 gap-4">
         {isLoadingNft ? (
           <ArtsSkeltonList />
         ) : exampleNftData && exampleNftData.length > 0 ? (
