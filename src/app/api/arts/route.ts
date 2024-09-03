@@ -1,13 +1,3 @@
-// import { data } from "@/utils/data";
-// import { NextResponse } from "next/server";
-
-// export async function GET(){
-//     return NextResponse.json({
-//         data
-//     })
-
-// }
-
 import ArtModel from "@/lib/models/Arts";
 import dbConnect from "@/lib/mongo";
 import { NextRequest, NextResponse } from "next/server";
