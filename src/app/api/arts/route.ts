@@ -13,6 +13,7 @@ export async function GET() {
   }
 }
 
+
 // POST method to create a new art entry
 export async function POST(request: NextRequest) {
   await dbConnect();
