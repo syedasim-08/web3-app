@@ -121,22 +121,22 @@ const CreateNFTTemplate: React.FC = () => {
       setIsLoading(true);
 
       try {
-        // const response = await writeContract(config, {
-        //   abi: ABIS.createNFT as any,
-        //   address: mintContractAddress as any,
-        //   functionName: "mint",
-        //   args: [
-        //     String(address),
-        //     `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
-        //   ],
-        // });
+        const response = await writeContract(config, {
+          abi: ABIS.createNFT as any,
+          address: mintContractAddress as any,
+          functionName: "mint",
+          args: [
+            String(address),
+            `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
+          ],
+        });
 
-        // const txReceipt = await waitForTransactionReceipt(config, {
-        //   hash: response,
-        // });
+        const txReceipt = await waitForTransactionReceipt(config, {
+          hash: response,
+        });
 
         let uploadResponse;
-        if (fileUpload) {
+        if (fileUpload && txReceipt) {
           try {
             const formData = new FormData();
 

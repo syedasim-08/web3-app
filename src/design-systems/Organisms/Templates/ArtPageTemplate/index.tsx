@@ -47,7 +47,7 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
         ) : exampleNftData && exampleNftData.length > 0 ? (
           exampleNftData?.map((item: ArtsDataCollection) => {
             return (
-              <Link href={`/art/${item.id}`}>
+              <Link key={item.id}href={`/art/${item.id}`}>
               <Card
                 key={item.id}
                 name={item.name}
