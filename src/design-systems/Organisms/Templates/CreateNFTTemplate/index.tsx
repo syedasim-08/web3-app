@@ -143,7 +143,7 @@ const CreateNFTTemplate: React.FC = () => {
             formData.append("file", fileUpload);
             uploadResponse = await uploadFileAsync(formData);
             if (uploadResponse) {
-              console.log(response);
+              // console.log(response);
               toast.success("File uploaded successfully");
             }
           } catch (error) {

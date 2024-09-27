@@ -29,14 +29,14 @@ module.exports = {
       xxl: '1400px',
       mslg: { max: '1023px' },
     },
-    colors: {
-      white: '#ffffff',
-      black: '#000000',
-      light: '#595959',
-      yellow: '#ECAD09',
-      customColor: 'rgba(196, 51, 255, 0.20)',
-      gray: '#CCCCCC',
-    },
+    // colors: {
+    //   white: '#ffffff',
+    //   black: '#000000',
+    //   light: '#595959',
+    //   yellow: '#ECAD09',
+    //   customColor: 'rgba(196, 51, 255, 0.20)',
+    //   gray: '#CCCCCC',
+    // },
     fontFamily: {
       poppins: ['var(--font-poppins)'],
       piazzolla: ['var(--font-piazzolla)'],
@@ -100,6 +100,7 @@ module.exports = {
         transparent: 'transparent',
         // mainThemeLight : "rgba(197, 222, 22, 0.1)",
         mainThemeLight : "rgba(228, 245, 100, 0.2)",
+        grayColor : 'rgba(22, 22, 26, 0.6)',
         
         neutral: {
           100: '#141414',
@@ -196,7 +197,11 @@ module.exports = {
         naviBlue: '#041624',
         disable: '#DDDDDD',
         modalOpverlay: 'rgba(0, 0, 0, 0.70)',
-        lightGray: 'rgba(18, 18, 18, 0.08)'
+        lightGray: 'rgba(18, 18, 18, 0.08)',
+        bannerGray : 'rgba(22, 22, 26, 0.06)',
+        bannerGrayDark : 'rgba(22, 22, 26, 0.1)',
+        grayPrimary: 'rgba(255, 255, 255, 0.04)',
+        graySecondary: 'rgba(255, 255, 255, 0.1)'
       },
     
       backgroundImage: () => ({

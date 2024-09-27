@@ -4,6 +4,9 @@ import { getCookie, deleteCookie } from 'cookies-next'
 import { AnyObject } from '@/interfaces'
 import { BASE_API_ENDPOINT } from '@/utils/constant'
 
+console.log("Base API Endpoint:", BASE_API_ENDPOINT);
+
+
 const options: ApplyCaseMiddlewareOptions = {
   caseMiddleware: {
     requestTransformer: (config: any) => config,
@@ -47,7 +50,9 @@ const handleError = (error: AxiosError) => {
 }
 
 class CoreAPIService {
-  get = async <R>(url: string, params: AnyObject = {}) =>
+  get = async <R>(url: string, params : AnyObject = {}) =>
+   
+
     axios
       .request<R>({
         method: 'get',
@@ -56,6 +61,7 @@ class CoreAPIService {
       })
       .then<R>(responseData)
       .catch(handleError)
+
 
   post = async <R>(url: string, data: AnyObject = {}, { ...config }: AxiosRequestConfig = {}) =>
     axios

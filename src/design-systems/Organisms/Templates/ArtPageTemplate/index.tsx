@@ -7,6 +7,7 @@ import { ArtsDataCollection } from "@/utils/data";
 import { ArtsTemplateProps } from "./interface";
 import ArtsSkeleton from "../../ArtsSkeleton";
 import Typography from "@/design-systems/Atoms/Typography";
+import Link from "next/link";
 
 export const PAGE_SIZE = 10;
 
@@ -36,6 +37,8 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
 }) => {
   const { isConnected } = useAccount();
 
+
+
   return (
     <main className="container h-full bg-[#f7f7f7] dark:bg-black">
       <div className="grid grid-cols-5 pt-16 pb-5 gap-y-6 gap-4">
@@ -44,13 +47,15 @@ const ArtPageTemplate: React.FC<ArtsTemplateProps> = ({
         ) : exampleNftData && exampleNftData.length > 0 ? (
           exampleNftData?.map((item: ArtsDataCollection) => {
             return (
+              <Link key={item.id}href={`/art/${item.id}`}>
               <Card
-                key={item._id}
+                key={item.id}
                 name={item.name}
                 price={item.price}
                 minting={item.minting}
                 url={item.imgUrl}
               />
+              </Link>
             );
           })
         ) : (
